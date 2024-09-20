@@ -1,0 +1,765 @@
+<html>
+
+	<head>
+
+		<script>
+
+			function log(x) {
+				console.log(...arguments);
+				return x;
+			}
+			function reducer(s, i) {
+				return i(s);
+			}
+
+			function updateAndReturn(item, data) {
+				item.style = '';
+
+				const cData = [
+					c => ({ ...c, [item.className]: item.innerText })
+
+				].reduce(reducer, data || {})
+
+				return [
+					c => c || [],
+					Array.from,
+					c => c.map(x => updateAndReturn(x, cData)),
+					c => (c.reduce((s, i) => ({ ...s, ...i }), cData)),
+				].reduce(reducer, item.children);
+			}
+
+			function run() {
+				const input = document.getElementById('container');
+				return [
+					c => c.children,
+					c => c || [],
+					Array.from,
+					c => c.map(updateAndReturn),
+					c => c.map(x => ({ ...x, notes: [] }))
+					, x => document.getElementById('data').value = JSON.stringify(x)
+				].reduce(reducer, input);
+			}
+
+			window.addEventListener(
+				"DOMContentLoaded",
+				() => run()
+				,
+				false
+			);
+
+
+		</script>
+
+
+	</head>
+
+	<body>
+
+		<textarea id="data"></textarea>
+
+
+		<div id="container">
+			<div data-item-id="66cf485c3d4aea74d037cdd6" class="item box"
+				style="top: 275.188px; left: 320px; height: 48px; width: 199px;">
+				<div class="item-hierarchy-tooltip" style="top: 48px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">Unified FA Landing Page/Dashboard</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Aug 28, 2024 – Nov 25, 2024</div>
+						<div class="item-hierarchy-tooltip__item-description">Redesign and consolidate the advisor
+							experience by
+							creating a unified landing page that merges the account selection and account management
+							pages
+							into...</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66c90695b071156c3b0c7d97" class="item box"
+				style="top: 331.188px; left: 320px; height: 30px; width: 199px;">
+				<div class="item-hierarchy-tooltip" style="top: 30px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">iPhi integration to RDE</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Aug 23, 2024 – Nov 20, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66d8f38a7b22a5e93f1f0611" class="item box"
+				style="top: 369.188px; left: 320px; height: 30px; width: 199px;">
+				<div class="item-hierarchy-tooltip" style="top: 30px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">DAF Summary Widget</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 4, 2024 – Dec 2, 2024</div>
+						<div class="item-hierarchy-tooltip__item-description">Embedded DAF Summary Widget for Wealth
+							PortalsDescription: Develop a compact, fully embeddable DAF summary widget that can be
+							seamlessly
+							integrated in...</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66e449e46c6e093e12a49354" class="item box"
+				style="top: 407.188px; left: 320px; height: 30px; width: 199px;">
+				<div class="item-hierarchy-tooltip" style="top: 30px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">Impact Report</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 13, 2024 – Dec 11, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66cf50933d4aea74d037cf18" class="item~ box"
+				style="top: 445.188px; left: 320px; height: 30px; width: 199px;">
+				<div class="item-hierarchy-tooltip" style="top: 30px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">Push communications</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Aug 28, 2024 – Nov 25, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66c8db0cb071156c3b0c78ff" class="item box"
+				style="top: 483.188px; left: 320px; height: 66px; width: 199px;">
+				<div class="item-hierarchy-tooltip" style="top: 66px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">Streamlined Contribution Processing and
+							Automation
+						</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates"></div>
+						<div class="item-hierarchy-tooltip__item-description">Overhaul the current contribution process
+							to
+							improve efficiency and scalability. This initiative focuses on automating manual tasks,
+							reducing
+							processi...</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66cf486f3d4aea74d037cdf1" class="item box"
+				style="top: 557.188px; left: 320px; height: 66px; width: 199px;">
+				<div class="item-hierarchy-tooltip" style="top: 66px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">Smart Contribution Reminders and Prompts</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Aug 28, 2024 – Nov 25, 2024</div>
+						<div class="item-hierarchy-tooltip__item-description">Introduce an intelligent system of gentle
+							reminders and nudges to encourage users to add funds to their DAF. The notification system
+							will
+							leverage use...</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66c90931b071156c3b0c8068" class="item box"
+				style="top: 631.188px; left: 320px; height: 30px; width: 199px;">
+				<div class="item-hierarchy-tooltip" style="top: 30px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">More iPhi APIs</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Aug 23, 2024 – Nov 20, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66cf489a3d4aea74d037ce3a" class="item box"
+				style="top: 669.188px; left: 320px; height: 66px; width: 199px;">
+				<div class="item-hierarchy-tooltip" style="top: 66px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">Family Legacy Accounts for Generational Wealth
+							Transfer</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Aug 28, 2024 – Nov 25, 2024</div>
+						<div class="item-hierarchy-tooltip__item-description">Implement a parent-child account framework
+							that
+							allows for a hierarchical relationship between accounts, where parent accounts can oversee
+							and
+							manage...</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66cf488b3d4aea74d037ce23" class="item box"
+				style="top: 743.188px; left: 320px; height: 48px; width: 199px;">
+				<div class="item-hierarchy-tooltip" style="top: 48px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">Simplified Internal DAF Fund Transfers</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Aug 28, 2024 – Nov 25, 2024</div>
+						<div class="item-hierarchy-tooltip__item-description">Implement an enhanced internal transfer
+							system to
+							allow seamless movement of funds between Donor-Advised Fund (DAF) accounts within your
+							platform.
+							Thi...</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66cf487c3d4aea74d037ce0c" class="item box"
+				style="top: 799.188px; left: 320px; height: 48px; width: 199px;">
+				<div class="item-hierarchy-tooltip" style="top: 48px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">Contributions - ACH pull</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Aug 28, 2024 – Nov 25, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66cf48a73d4aea74d037ce4d" class="item box"
+				style="top: 855.188px; left: 320px; height: 66px; width: 199px;">
+				<div class="item-hierarchy-tooltip" style="top: 66px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">AI-Powered Advisor Co-Pilot for DAF Management
+						</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Aug 28, 2024 – Nov 25, 2024</div>
+						<div class="item-hierarchy-tooltip__item-description">Introduce an AI-driven co-pilot that
+							empowers
+							financial advisors to more efficiently manage DAF within the platform. The Advisor Co-Pilot
+							will
+							assist...</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66cf48c03d4aea74d037ce60" class="item box"
+				style="top: 929.188px; left: 320px; height: 48px; width: 199px;">
+				<div class="item-hierarchy-tooltip" style="top: 48px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">DAF Tax Savings Calculator</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Aug 28, 2024 – Nov 25, 2024</div>
+						<div class="item-hierarchy-tooltip__item-description">Develop a user-friendly DAF Tax Savings
+							Calculator
+							that helps donors understand the financial benefits of contributing to a Donor-Advised Fund.
+							This
+							t...</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66c8db35b071156c3b0c7904" class="item box"
+				style="top: 994.188px; left: 320px; height: 48px; width: 199px;">
+				<div class="item-hierarchy-tooltip" style="top: 48px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">Embedded partnership integrations</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates"></div>
+						<div class="item-hierarchy-tooltip__item-description"></div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66cf4c663d4aea74d037cecf" class="item box"
+				style="top: 1086.19px; left: 320px; height: 48px; width: 199px;">
+				<div class="item-hierarchy-tooltip" style="top: 48px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">VIP Offering Refinement</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Aug 28, 2024 – Nov 25, 2024</div>
+						<div class="item-hierarchy-tooltip__item-description">This VIP offering is designed to cater to
+							the
+							sophisticated needs of high-impact philanthropists, providing them with unmatched
+							flexibility,
+							control,...</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66c8dbb0b071156c3b0c7936" class="item box"
+				style="top: 1178.19px; left: 320px; height: 30px; width: 199px;">
+				<div class="item-hierarchy-tooltip" style="top: 30px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">RFC Premium</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Aug 23, 2024 – Nov 20, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66d9d8acae53aee80871ff13" class="item box"
+				style="top: 1337.19px; left: 320px; height: 66px; width: 199px;">
+				<div class="item-hierarchy-tooltip" style="top: 66px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">Self-Directed DAF Platform for Independent
+							Investors
+						</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 5, 2024 – Dec 3, 2024</div>
+						<div class="item-hierarchy-tooltip__item-description">Is this contingent on E*Trade deal?</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66da48abae53aee808720034" class="item box"
+				style="top: 1626.19px; left: 320px; height: 30px; width: 199px;">
+				<div class="item-hierarchy-tooltip item-hierarchy-tooltip--bottom" style="bottom: 30px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">Vanguard needs</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 5, 2024 – Dec 3, 2024</div>
+						<div class="item-hierarchy-tooltip__item-description">Contingent on deal close.</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66d8ede57b22a5e93f1f0353" class="item box"
+				style="top: 275.188px; left: 540px; height: 30px; width: 199px;">
+				<div class="item-hierarchy-tooltip" style="top: 30px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">iPhi integration to RDE</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 4, 2024 – Dec 2, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66d8f2a47b22a5e93f1f0511" class="item box"
+				style="top: 313.188px; left: 540px; height: 30px; width: 199px;">
+				<div class="item-hierarchy-tooltip" style="top: 30px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">Chat upgrade</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 4, 2024 – Dec 2, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66d0aed3a0e4f631994deba2" class="item box"
+				style="top: 351.188px; left: 540px; height: 48px; width: 199px;">
+				<div class="item-hierarchy-tooltip" style="top: 48px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">Formalize international grants</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Aug 29, 2024 – Nov 26, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66d8f1af7b22a5e93f1f0428" class="item box"
+				style="top: 407.188px; left: 540px; height: 48px; width: 199px;">
+				<div class="item-hierarchy-tooltip" style="top: 48px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">Edit grants, including recurring</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 4, 2024 – Dec 2, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66d8f28b7b22a5e93f1f04e7" class="item box"
+				style="top: 994.188px; left: 540px; height: 30px; width: 199px;">
+				<div class="item-hierarchy-tooltip" style="top: 30px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">Clearwater integration</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 4, 2024 – Dec 2, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66d8f1927b22a5e93f1f03ee" class="item box"
+				style="top: 1178.19px; left: 540px; height: 48px; width: 199px;">
+				<div class="item-hierarchy-tooltip" style="top: 48px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">Manual bank account auth</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 4, 2024 – Dec 2, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66d8f19c7b22a5e93f1f0409" class="item box"
+				style="top: 1234.19px; left: 540px; height: 30px; width: 199px;">
+				<div class="item-hierarchy-tooltip" style="top: 30px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">ACH mandate</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 4, 2024 – Dec 2, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66d8f1847b22a5e93f1f03d3" class="item box"
+				style="top: 1272.19px; left: 540px; height: 48px; width: 199px;">
+				<div class="item-hierarchy-tooltip" style="top: 48px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">Digital engagement score</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 4, 2024 – Dec 2, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66d8f22f7b22a5e93f1f0496" class="item box"
+				style="top: 1337.19px; left: 540px; height: 30px; width: 199px;">
+				<div class="item-hierarchy-tooltip" style="top: 30px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">Family grants</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 4, 2024 – Dec 2, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66c906bbb071156c3b0c7dc0" class="item box"
+				style="top: 1429.19px; left: 540px; height: 48px; width: 199px;">
+				<div class="item-hierarchy-tooltip" style="top: 48px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">Global charity vetting with Non-IRS</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Aug 23, 2024 – Nov 20, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66db1378e887d16419af3e7b" class="item box"
+				style="top: 1485.19px; left: 540px; height: 48px; width: 199px;">
+				<div class="item-hierarchy-tooltip item-hierarchy-tooltip--bottom" style="bottom: 48px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">Automated contribution pricing</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 6, 2024 – Dec 4, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66c906ceb071156c3b0c7de1" class="item box"
+				style="top: 1541.19px; left: 540px; height: 30px; width: 199px;">
+				<div class="item-hierarchy-tooltip item-hierarchy-tooltip--bottom" style="bottom: 30px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">Remove Guidestar</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Aug 23, 2024 – Nov 20, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66c90655b071156c3b0c7d38" class="item box"
+				style="top: 1579.19px; left: 540px; height: 30px; width: 199px;">
+				<div class="item-hierarchy-tooltip item-hierarchy-tooltip--bottom" style="bottom: 30px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">iPhi Integration to RFC</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Aug 23, 2024 – Nov 20, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66d8f4157b22a5e93f1f06d2" class="item box"
+				style="top: 1626.19px; left: 540px; height: 48px; width: 199px;">
+				<div class="item-hierarchy-tooltip item-hierarchy-tooltip--bottom" style="bottom: 48px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">iPhi self service automation</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 4, 2024 – Dec 2, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66d8f3ed7b22a5e93f1f069c" class="item box"
+				style="top: 275.188px; left: 760px; height: 48px; width: 199px;">
+				<div class="item-hierarchy-tooltip" style="top: 48px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">Fixing stuff from Datadog</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 4, 2024 – Dec 2, 2024</div>
+						<div class="item-hierarchy-tooltip__item-description">Better understand some of the output -
+							self-induced by Datadog?Follow up session on digging into the output - triage issues from DD
+							and
+							prioritize the...</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66d8f3977b22a5e93f1f0628" class="item box"
+				style="top: 331.188px; left: 760px; height: 30px; width: 199px;">
+				<div class="item-hierarchy-tooltip" style="top: 30px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">CRD ID</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 4, 2024 – Dec 2, 2024</div>
+						<div class="item-hierarchy-tooltip__item-description">CRD - Client Role Document (Account)?Would
+							this
+							tie back to Snowflake/Metabase?</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66eb33a176e87ed8c1803978" class="item box"
+				style="top: 1178.19px; left: 760px; height: 30px; width: 199px;">
+				<div class="item-hierarchy-tooltip" style="top: 30px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">Upgrade AWS SDK to v3</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Jan 1, 2025 – Mar 31, 2025</div>
+						<div class="item-hierarchy-tooltip__item-description">-RFC/RDE-v2 EOL Sept 2025</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66d8f4007b22a5e93f1f06b3" class="item box"
+				style="top: 1429.19px; left: 760px; height: 48px; width: 199px;">
+				<div class="item-hierarchy-tooltip" style="top: 48px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">Grant processing volume improvements</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 4, 2024 – Dec 2, 2024</div>
+						<div class="item-hierarchy-tooltip__item-description">DFX?</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66d0bda2a0e4f631994debbd" class="item box"
+				style="top: 1626.19px; left: 760px; height: 48px; width: 199px;">
+				<div class="item-hierarchy-tooltip item-hierarchy-tooltip--bottom" style="bottom: 48px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">iPhi upgrades &amp; consulting</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Aug 29, 2024 – Nov 26, 2024</div>
+						<div class="item-hierarchy-tooltip__item-description">Not clear what this entails?</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66d8f4557b22a5e93f1f0755" class="item box"
+				style="top: 1682.19px; left: 760px; height: 30px; width: 199px;">
+				<div class="item-hierarchy-tooltip item-hierarchy-tooltip--bottom" style="bottom: 30px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">RJ redaction - SOW</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 4, 2024 – Dec 2, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66d8f4617b22a5e93f1f0774" class="item box"
+				style="top: 1720.19px; left: 760px; height: 48px; width: 199px;">
+				<div class="item-hierarchy-tooltip item-hierarchy-tooltip--bottom" style="bottom: 48px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">NCF org structure - SOW</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 4, 2024 – Dec 2, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66d8f3de7b22a5e93f1f067d" class="item box"
+				style="top: 1776.19px; left: 760px; height: 48px; width: 199px;">
+				<div class="item-hierarchy-tooltip item-hierarchy-tooltip--bottom" style="bottom: 48px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">Improved documentation</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 4, 2024 – Dec 2, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66d8f3b27b22a5e93f1f063f" class="item box"
+				style="top: 1841.19px; left: 760px; height: 48px; width: 199px;">
+				<div class="item-hierarchy-tooltip item-hierarchy-tooltip--bottom" style="bottom: 48px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">Data aggregation into Snowflake</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 4, 2024 – Dec 2, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66d8f34c7b22a5e93f1f05de" class="item box"
+				style="top: 1897.19px; left: 760px; height: 30px; width: 199px;">
+				<div class="item-hierarchy-tooltip item-hierarchy-tooltip--bottom" style="bottom: 30px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">DFX to AWS</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 4, 2024 – Dec 2, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66d8f42a7b22a5e93f1f06ed" class="item box"
+				style="top: 2233.19px; left: 760px; height: 48px; width: 199px;">
+				<div class="item-hierarchy-tooltip item-hierarchy-tooltip--bottom" style="bottom: 48px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">iPhi application hardening</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 4, 2024 – Dec 2, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66d8f3ca7b22a5e93f1f065e" class="item box"
+				style="top: 2289.19px; left: 760px; height: 30px; width: 199px;">
+				<div class="item-hierarchy-tooltip item-hierarchy-tooltip--bottom" style="bottom: 30px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">Ren Insights - TBD</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 4, 2024 – Dec 2, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66d8ed437b22a5e93f1f0304" class="item box"
+				style="top: 2327.19px; left: 760px; height: 30px; width: 199px;">
+				<div class="item-hierarchy-tooltip item-hierarchy-tooltip--bottom" style="bottom: 30px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">Identity Platform</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 4, 2024 – Dec 2, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66d8f4457b22a5e93f1f0736" class="item box"
+				style="top: 2365.19px; left: 760px; height: 48px; width: 199px;">
+				<div class="item-hierarchy-tooltip item-hierarchy-tooltip--bottom" style="bottom: 48px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">Clone and obfuscate environments</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 4, 2024 – Dec 2, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66e1ff6405a407ce4758c456" class="item box"
+				style="top: 2421.19px; left: 760px; height: 48px; width: 199px;">
+				<div class="item-hierarchy-tooltip item-hierarchy-tooltip--bottom" style="bottom: 48px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">iPhi - replace PowerBuilder with ??</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 11, 2024 – Dec 9, 2024</div>
+						<div class="item-hierarchy-tooltip__item-description">Upgrade to PB 2025? Might be necessary to
+							migrate
+							to C#?</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66e1ffa305a407ce4758c475" class="item box"
+				style="top: 2477.19px; left: 760px; height: 48px; width: 199px;">
+				<div class="item-hierarchy-tooltip item-hierarchy-tooltip--bottom" style="bottom: 48px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">CI/CD Process for iPhi BO/FO</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 11, 2024 – Dec 9, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66eb332d76e87ed8c1803950" class="item box"
+				style="top: 2533.19px; left: 760px; height: 30px; width: 199px;">
+				<div class="item-hierarchy-tooltip item-hierarchy-tooltip--bottom" style="bottom: 30px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">Migrate to GitHub</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Jan 1, 2025 – Mar 31, 2025</div>
+						<div class="item-hierarchy-tooltip__item-description">-DFX-iPhi (FO/BO)</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66eb362076e87ed8c18039ca" class="item box"
+				style="top: 2571.19px; left: 760px; height: 48px; width: 199px;">
+				<div class="item-hierarchy-tooltip item-hierarchy-tooltip--bottom" style="bottom: 48px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">"Standardize" on Service Bus</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 18, 2024 – Dec 16, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66eb343876e87ed8c180399f" class="item box"
+				style="top: 2627.19px; left: 760px; height: 30px; width: 199px;">
+				<div class="item-hierarchy-tooltip item-hierarchy-tooltip--bottom" style="bottom: 30px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">FO/BO WebServer Farm</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Dec 1, 2024 – Mar 31, 2025</div>
+						<div class="item-hierarchy-tooltip__item-description">-ScaleSet (load balancing)</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66d8ec577b22a5e93f1f0229" class="item box"
+				style="top: 1626.19px; left: 980px; height: 30px; width: 199px;">
+				<div class="item-hierarchy-tooltip item-hierarchy-tooltip--bottom" style="bottom: 30px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">BofA CSP Phase 2</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 4, 2024 – Dec 2, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66d8ec6e7b22a5e93f1f0258" class="item box"
+				style="top: 1664.19px; left: 980px; height: 30px; width: 199px;">
+				<div class="item-hierarchy-tooltip item-hierarchy-tooltip--bottom" style="bottom: 30px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">BofA CSP Phase 3</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 4, 2024 – Dec 2, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66c90806b071156c3b0c7f9b" class="item box"
+				style="top: 1702.19px; left: 980px; height: 30px; width: 199px;">
+				<div class="item-hierarchy-tooltip item-hierarchy-tooltip--bottom" style="bottom: 30px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">BofA ADSF remediation</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Aug 23, 2024 – Nov 20, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66d8ec847b22a5e93f1f027f" class="item box"
+				style="top: 1944.19px; left: 980px; height: 48px; width: 199px;">
+				<div class="item-hierarchy-tooltip item-hierarchy-tooltip--bottom" style="bottom: 48px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">iPhi Core Access Permissions</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 4, 2024 – Dec 2, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66c907cbb071156c3b0c7f35" class="item box"
+				style="top: 2000.19px; left: 980px; height: 48px; width: 199px;">
+				<div class="item-hierarchy-tooltip item-hierarchy-tooltip--bottom" style="bottom: 48px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">Annual pen test remediation</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Aug 23, 2024 – Nov 20, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66d9ebceae53aee80871ffc6" class="item box"
+				style="top: 2056.19px; left: 980px; height: 48px; width: 199px;">
+				<div class="item-hierarchy-tooltip item-hierarchy-tooltip--bottom" style="bottom: 48px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">Network Scan Remediation (new)</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 5, 2024 – Dec 3, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66d9ec2bae53aee80872000a" class="item box"
+				style="top: 2112.19px; left: 980px; height: 48px; width: 199px;">
+				<div class="item-hierarchy-tooltip item-hierarchy-tooltip--bottom" style="bottom: 48px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">iPhi user roles remediation</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 5, 2024 – Dec 3, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66c90820b071156c3b0c7fc4" class="item box"
+				style="top: 2168.19px; left: 980px; height: 48px; width: 199px;">
+				<div class="item-hierarchy-tooltip item-hierarchy-tooltip--bottom" style="bottom: 48px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">Dynamic code analysis (Snyk)</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Aug 23, 2024 – Nov 20, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66d8ecfd7b22a5e93f1f02c7" class="item box"
+				style="top: 2233.19px; left: 980px; height: 30px; width: 199px;">
+				<div class="item-hierarchy-tooltip item-hierarchy-tooltip--bottom" style="bottom: 30px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">DFX MFA</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 4, 2024 – Dec 2, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66d8ebed7b22a5e93f1f01f3" class="item box"
+				style="top: 1626.19px; left: 1200px; height: 48px; width: 200px;">
+				<div class="item-hierarchy-tooltip item-hierarchy-tooltip--right item-hierarchy-tooltip--bottom"
+					style="bottom: 48px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">Scholarships Partnership Integration</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 4, 2024 – Dec 2, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66d9c982ae53aee80871feb7" class="item box"
+				style="top: 1682.19px; left: 1200px; height: 48px; width: 200px;">
+				<div class="item-hierarchy-tooltip item-hierarchy-tooltip--right item-hierarchy-tooltip--bottom"
+					style="bottom: 48px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">Spending policies improvements</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 5, 2024 – Dec 3, 2024</div>
+					</div>
+				</div>
+			</div>
+			<div data-item-id="66d9c98cae53aee80871feda" class="item box"
+				style="top: 1738.19px; left: 1200px; height: 30px; width: 200px;">
+				<div class="item-hierarchy-tooltip item-hierarchy-tooltip--right item-hierarchy-tooltip--bottom"
+					style="bottom: 30px;">
+					<div class="item-hierarchy-tooltip__container">
+						<div class="item-hierarchy-tooltip__item-summary">Events enhancements</div>
+						<div class="item-hierarchy-tooltip__item-subitem-count"></div>
+						<div class="item-hierarchy-tooltip__item-dates">Sep 5, 2024 – Dec 3, 2024</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>
