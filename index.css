@@ -1,0 +1,33 @@
+.add-note-container {
+  display: flex;
+  flex-direction: column;
+}
+
+textarea {
+  padding: 1em;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.entry {
+  border: thin solid gray;
+  margin-top: 0.5em;
+  padding: 0.5em;
+  padding-top: 0em;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+}
+
+.dates {
+  text-align: right;
+}
+
+.summary {
+  flex-grow: 2;
+}

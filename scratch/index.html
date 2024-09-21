@@ -15,8 +15,12 @@
 			function updateAndReturn(item, data) {
 				item.style = '';
 
+				const dataItemId = item.getAttribute('data-item-id')
+
 				const cData = [
-					c => ({ ...c, [item.className]: item.innerText })
+					c => ({ ...c, [item.className]: item.innerText }),
+					c => (dataItemId ? { ...c, 'data-item-id': dataItemId } : c)
+					//updated here.
 
 				].reduce(reducer, data || {})
 
