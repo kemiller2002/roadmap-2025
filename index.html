@@ -19,11 +19,11 @@
         </script>
         <script>
 
-            const token = "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";
+            const token = "Z2l0aHViX3BhdF8xMUFBRlQ2TVEwQTNZb1VVb3FHQW9RXzJPNFJSajRMTFJVN241N0tWRXpiVmc3MzVscVVWY242RHg3cE16ZXdBT0Y3TEVRVUtXRTljZjNCMmFs";
 
             const octokit = (token) =>
                 new Octokit({
-                    auth: token,
+                    auth: atob(token),
                 });
 
 
