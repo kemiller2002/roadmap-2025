@@ -19,13 +19,12 @@
         </script>
         <script>
 
-            const token = "Z2l0aHViX3BhdF8xMUFBRlQ2TVEwQTNZb1VVb3FHQW9RXzJPNFJSajRMTFJVN241N0tWRXpiVmc3MzVscVVWY242RHg3cE16ZXdBT0Y3TEVRVUtXRTljZjNCMmFs";
+            const token = atob("Z2l0aHViX3BhdF8xMUFBRlQ2TVEwcFVnMG1NQ3N2ZmJuX2UzdGpFR2VtcWVlaHJpSVpsdkp0b0dOSUNPOFB4dG82MUhWaktlb1R3MUIyWFFQUUNaR1I2aEV5WWNI");
 
             const octokit = (token) =>
                 new Octokit({
-                    auth: atob(token),
+                    auth: token,
                 });
-
 
             const files = ko.observableArray();
 
@@ -69,11 +68,11 @@
             }
 
 
-            function doFileRetrievalActions(path) {
+            function doFileRetrievalActions(fileContents) {
                 return [
                     getFileContents,
                     x => x.then(addFields),
-                ].reduce(reducer, { path })
+                ].reduce(reducer, fileContents)
             }
 
             function run() {
@@ -160,10 +159,29 @@
                     .then(x => x.data)
             }
 
+            function tryParseFileContent(content, fileData) {
+                try {
+                    return JSON.parse(atob(content))
+                }
+                catch (e) {
+                    console.log(e);
+                    return {
+                        "item box": '',
+                        "data-item-id": "",
+                        "item-hierarchy-tooltip": "",
+                        "item-hierarchy-tooltip__container": "",
+                        "item-hierarchy-tooltip__item-summary": `error loading: ${fileData.path}`,
+                        "item-hierarchy-tooltip__item-subitem-count": "",
+                        "item-hierarchy-tooltip__item-dates": "",
+                        "notes": []
+                    }
+                }
+            }
+
             function getFileContents(fileData) {
                 return makeRequest(`contents/${fileData.path}`)
                     .then(x => x.data)
-                    .then(x => ({ ...x, jObject: JSON.parse(atob(x.content)) }))
+                    .then(x => ({ ...x, jObject: tryParseFileContent(x.content, fileData) }))
             }
 
 
@@ -219,7 +237,7 @@
             data.showInProcess(true);
 
             const finallyAction = () => {
-                doFileRetrievalActions(data.path)
+                doFileRetrievalActions(data)
                     .then(y => replaceFile(data, y))
                     .then(y => {
                         if (error) {
