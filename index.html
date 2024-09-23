@@ -1,9 +1,12 @@
 <html>
 
     <head>
+        <meta http-equiv="Content-Security-Policy"
+            content="default-src 'self' *.github.com cdn.jsdelivr.net cdnjs.cloudflare.com 'unsafe-inline' 'unsafe-eval' data: esm.sh; img-src https://*; child-src 'none';" />
 
         <link rel="stylesheet" href="index.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js"
             integrity="sha512-2AL/VEauKkZqQU9BHgnv48OhXcJPx9vdzxN1JrKDVc4FPU/MEE/BZ6d9l0mP7VmvLsjtYwqiYQpDskK9dG8KBA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -16,7 +19,7 @@
         </script>
         <script>
 
-            const token = "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";
+            const token = "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";
 
             const octokit = (token) =>
                 new Octokit({
@@ -26,49 +29,130 @@
 
             const files = ko.observableArray();
 
-            function makeRequest(contentPath) {
+            function makeRequest(path) {
                 const octo = octokit(token);
                 return octo
-                    .request(`GET /repos/{owner}/{repo}/${contentPath}`, {
+                    .request(`GET /repos/{owner}/{repo}/${path}`, {
                         owner: "kemiller2002",
                         repo: "roadmap-2025",
                         per_page: 2,
+                        timestamp: (new Date()).getTime()
                     })
             }
 
-            /*function run() {
-                getFileList()
-                    .then(x => Promise.all(x.map(getFileContents))
-                        .then(x => x.forEach(y => files.push(y)))
 
-                    )
-            }*/
+            function makeUpdateRequest({ path, sha, content }) {
+
+
+                const user = {
+                    name: 'ren-user',
+                    email: 'ren-user@reninc.com'
+                }
+
+                const octo = octokit(token);
+
+                return octo.rest.repos.createOrUpdateFileContents({
+                    owner: 'kemiller2002',
+                    repo: 'roadmap-2025',
+                    path,
+                    message: `Updating of ${path}`,
+                    content: btoa(JSON.stringify(content, null, 2)),
+                    committer: { ...user },
+                    author: { ...user },
+                    sha
+                })
+            }
+
+
+            function addFields(item) {
+                return ({ ...item, 'tempNote': ko.observable(), 'errorMessage': ko.observable(), 'showInProcess': ko.observable(false) })
+            }
+
+
+            function doFileRetrievalActions(path) {
+                return [
+                    getFileContents,
+                    x => x.then(addFields),
+                ].reduce(reducer, { path })
+            }
 
             function run() {
+                getFileList()
+                    .then(x => Promise.all(x.map(doFileRetrievalActions))
+                        .then(x =>
+                            x.forEach(y => {
+                                files.push(y)
+                            }
+                            )
+
+                        ))
+            }
+
+            function run_test() {
                 const data = [
                     {
-                        "item box": "Unified FA Landing Page/Dashboard\nAug 28, 2024 – Nov 25, 2024\nRedesign and consolidate the advisor experience by creating a unified landing page that merges the account selection and account management pages into...",
-                        "item-hierarchy-tooltip": "Unified FA Landing Page/Dashboard\nAug 28, 2024 – Nov 25, 2024\nRedesign and consolidate the advisor experience by creating a unified landing page that merges the account selection and account management pages into...",
-                        "item-hierarchy-tooltip__container": "Unified FA Landing Page/Dashboard\nAug 28, 2024 – Nov 25, 2024\nRedesign and consolidate the advisor experience by creating a unified landing page that merges the account selection and account management pages into...",
-                        "item-hierarchy-tooltip__item-summary": "Unified FA Landing Page/Dashboard",
-                        "item-hierarchy-tooltip__item-subitem-count": "",
-                        "item-hierarchy-tooltip__item-dates": "Aug 28, 2024 – Nov 25, 2024",
-                        "item-hierarchy-tooltip__item-description": "Redesign and consolidate the advisor experience by creating a unified landing page that merges the account selection and account management pages into...",
-                        "notes": ['test'],
+                        "name": "2962784.json",
+                        "path": "data/2962784.json",
+                        "sha": "f88fc45968d40cd7d6371571bad3ccd09f807669",
+                        "size": 527,
+                        "url": "https://api.github.com/repos/kemiller2002/roadmap-2025/contents/data/2962784.json?ref=main",
+                        "html_url": "https://github.com/kemiller2002/roadmap-2025/blob/main/data/2962784.json",
+                        "git_url": "https://api.github.com/repos/kemiller2002/roadmap-2025/git/blobs/f88fc45968d40cd7d6371571bad3ccd09f807669",
+                        "download_url": "https://raw.githubusercontent.com/kemiller2002/roadmap-2025/main/data/2962784.json",
+                        "type": "file",
+                        "_links": {
+                            "self": "https://api.github.com/repos/kemiller2002/roadmap-2025/contents/data/2962784.json?ref=main",
+                            "git": "https://api.github.com/repos/kemiller2002/roadmap-2025/git/blobs/f88fc45968d40cd7d6371571bad3ccd09f807669",
+                            "html": "https://github.com/kemiller2002/roadmap-2025/blob/main/data/2962784.json"
+                        },
+                        "jObject": {
+                            "item box": "Global charity vetting with Non-IRS\nAug 23, 2024 â Nov 20, 2024",
+                            "data-item-id": "66c906bbb071156c3b0c7dc0",
+                            "item-hierarchy-tooltip": "Global charity vetting with Non-IRS\nAug 23, 2024 â Nov 20, 2024",
+                            "item-hierarchy-tooltip__container": "Global charity vetting with Non-IRS\nAug 23, 2024 â Nov 20, 2024",
+                            "item-hierarchy-tooltip__item-summary": "Global charity vetting with Non-IRS",
+                            "item-hierarchy-tooltip__item-subitem-count": "",
+                            "item-hierarchy-tooltip__item-dates": "Aug 23, 2024 â Nov 20, 2024",
+                            "notes": []
+                        },
+                        "tempNote": ""
                     },
                     {
-                        "item box": "Impact Report\nSep 13, 2024 – Dec 11, 2024",
-                        "item-hierarchy-tooltip": "Impact Report\nSep 13, 2024 – Dec 11, 2024",
-                        "item-hierarchy-tooltip__container": "Impact Report\nSep 13, 2024 – Dec 11, 2024",
-                        "item-hierarchy-tooltip__item-summary": "Impact Report",
-                        "item-hierarchy-tooltip__item-subitem-count": "",
-                        "item-hierarchy-tooltip__item-dates": "Sep 13, 2024 – Dec 11, 2024",
-                        "notes": []
-                    }];
+                        "name": "332674583.json",
+                        "path": "data/332674583.json",
+                        "sha": "70c16ac41a3ec3c942095517bbdb1b78e43b8ef8",
+                        "size": 1211,
+                        "url": "https://api.github.com/repos/kemiller2002/roadmap-2025/contents/data/332674583.json?ref=main",
+                        "html_url": "https://github.com/kemiller2002/roadmap-2025/blob/main/data/332674583.json",
+                        "git_url": "https://api.github.com/repos/kemiller2002/roadmap-2025/git/blobs/70c16ac41a3ec3c942095517bbdb1b78e43b8ef8",
+                        "download_url": "https://raw.githubusercontent.com/kemiller2002/roadmap-2025/main/data/332674583.json",
+                        "type": "file",
+                        "_links": {
+                            "self": "https://api.github.com/repos/kemiller2002/roadmap-2025/contents/data/332674583.json?ref=main",
+                            "git": "https://api.github.com/repos/kemiller2002/roadmap-2025/git/blobs/70c16ac41a3ec3c942095517bbdb1b78e43b8ef8",
+                            "html": "https://github.com/kemiller2002/roadmap-2025/blob/main/data/332674583.json"
+                        },
+                        "jObject": {
+                            "item box": "Smart Contribution Reminders and Prompts\nAug 28, 2024 â Nov 25, 2024\nIntroduce an intelligent system of gentle reminders and nudges to encourage users to add funds to their DAF. The notification system will leverage use...",
+                            "data-item-id": "66cf486f3d4aea74d037cdf1",
+                            "item-hierarchy-tooltip": "Smart Contribution Reminders and Prompts\nAug 28, 2024 â Nov 25, 2024\nIntroduce an intelligent system of gentle reminders and nudges to encourage users to add funds to their DAF. The notification system will leverage use...",
+                            "item-hierarchy-tooltip__container": "Smart Contribution Reminders and Prompts\nAug 28, 2024 â Nov 25, 2024\nIntroduce an intelligent system of gentle reminders and nudges to encourage users to add funds to their DAF. The notification system will leverage use...",
+                            "item-hierarchy-tooltip__item-summary": "Smart Contribution Reminders and Prompts",
+                            "item-hierarchy-tooltip__item-subitem-count": "",
+                            "item-hierarchy-tooltip__item-dates": "Aug 28, 2024 â Nov 25, 2024",
+                            "item-hierarchy-tooltip__item-description": "Introduce an intelligent system of gentle reminders and nudges to encourage users to add funds to their DAF. The notification system will leverage use...",
+                            "notes": []
+                        },
+                        "tempNote": ""
+                    }
+
+                ];
 
                 data
-                    .map(x => ({ jObject: x, "tempNote": "" }))
-                    .forEach(y => files.push(y))
+                    .map(addFields)
+                    .forEach(y => {
+                        files.push(y)
+                    })
             }
 
             function getFileList() {
@@ -79,8 +163,7 @@
             function getFileContents(fileData) {
                 return makeRequest(`contents/${fileData.path}`)
                     .then(x => x.data)
-                    .then(x => x.content)
-                    .then(x => ({ ...fileData, jObject: JSON.parse(atob(x)) }))
+                    .then(x => ({ ...x, jObject: JSON.parse(atob(x.content)) }))
             }
 
 
@@ -96,6 +179,9 @@
 
         <div data-bind="foreach:files" class="container">
             <div class="entry">
+                <div class="inProcess" data-bind="attr:{'showInProcess':showInProcess}">Update is in process</div>
+                <div class="error" data-bind="text:errorMessage"></div>
+
                 <div class="header">
                     <h2 data-bind="text:$data.jObject['item-hierarchy-tooltip__item-summary']" class="summary"></h2>
 
@@ -120,22 +206,33 @@
 
     </body>
     <script>
-        /*change to update github*/
         const reducer = (s, i) => i(s)
 
+        function replaceFile(old, current) {
+            files.replace(old, current)
+            return current;
+        }
+
         function addNote(data) {
-            const sD = [
-                JSON.stringify,
-                JSON.parse
-            ].reduce(reducer, data);
+            data.jObject.notes.push(data.tempNote());
+            let error = false;
+            data.showInProcess(true);
 
-            sD.jObject.notes.push(data.tempNote)
+            const finallyAction = () => {
+                doFileRetrievalActions(data.path)
+                    .then(y => replaceFile(data, y))
+                    .then(y => {
+                        if (error) {
+                            y.errorMessage('There was an issue updating the record.  It is most likely due to a new version and has been reloaded.  Try submitting again.')
+                            y.tempNote(data.tempNote());
+                        }
+                    })
+            }
 
-            return Promise.resolve(sD).then((value) => {
-                sD.tempNote = '';
-                files.replace(data, sD);
 
-            })
+            makeUpdateRequest({ path: data.path, sha: data.sha, content: data.jObject })
+                .catch(() => error = true)
+                .finally(finallyAction)
         }
 
         ko.applyBindings({

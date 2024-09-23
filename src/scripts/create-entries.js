@@ -28,7 +28,7 @@ function createName(data) {
 
 function writeFile(item) {
   return [
-    (i) => ({ ...i, stringData: JSON.stringify(i.data) }),
+    (i) => ({ ...i, stringData: JSON.stringify(i.data, null, 2) }),
     (i) => fs.writeFileSync(i.filePath, i.stringData),
   ].reduce(reducer, item);
 }
